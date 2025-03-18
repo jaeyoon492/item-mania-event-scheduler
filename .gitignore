@@ -1,0 +1,39 @@
+# 🛠️ 기본적인 Git Ignore 설정
+
+# ⚠️ 보안 관련 (절대 Git에 올리면 안 되는 파일)
+.env
+secrets.json
+config.json
+
+# 🔹 Python 관련
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+
+# 🔹 PDM(Python Dependency Manager) 관련
+__pypackages__/
+pdm.lock
+
+# 🔹 Docker 관련
+Dockerfile~
+.dockerignore
+docker-compose.yml
+docker-compose.override.yml
+
+# 🔹 Fly.io 관련
+fly.toml
+.fly/
+
+# 🔹 IDE/Editor 관련
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# 🔹 OS 및 기타 시스템 파일
+.DS_Store
