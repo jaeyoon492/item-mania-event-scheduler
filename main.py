@@ -17,9 +17,16 @@ CHANNEL_ID = os.getenv('DISCORD_CHANNEL_ID')
 class MyDiscordClient(discord.Client):
     async def on_ready(self):
         channel = self.get_channel(int(CHANNEL_ID))
-        self.daily_task.start()
+        await channel.send("Hello World!")
+        await channel.send(f'Logged in as {self.user.name}')
+        print(f'Logged in as {self.user.name}')
 
-    @tasks.loop(hours=24)
+        if not self.daily_task.is_running():  # ✅ 실행 중인지 확인 후 실행
+            await channel.send(f'Launched {self.user.name}')
+            print(f'Launched in as {self.user.name}')
+            self.daily_task.start()
+
+    @tasks.loop(hours=24, reconnect=True)
     async def daily_task(self):
         channel = self.get_channel(int(CHANNEL_ID))
         if channel:
